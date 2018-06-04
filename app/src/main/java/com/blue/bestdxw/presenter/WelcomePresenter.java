@@ -20,7 +20,7 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
 
     @Override
     public void onSuccess(){
-        mView.onSuccess();
+        mView.jump();
     }
 
     @Override
@@ -36,4 +36,15 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
     public void startTime(){
        welcomeModel.startCount(this);
     }
+
+    @Override
+    public void showGirl(String url) {
+        mView.showGirl(url);
+    }
+
+    @Override
+    public void getGrilFromGank() {
+        welcomeModel.loadGirlFromUrl(this);
+    }
+
 }

@@ -12,16 +12,23 @@ public interface WelcomeContract {
     interface Model {
         void startCount(WelcomePresenter welcomePresenter);
         void endCount(WelcomePresenter welcomePresenter);
+        void loadGirlFromUrl(WelcomePresenter welcomePresenter);
+
     }
 
     interface View {
         void changeText(String s);
-        void onSuccess();
+        void jump();
+
+        void showGirl(String url);
     }
 
     interface Presenter {
+        void changeText(String s);
         void onSuccess();
         void onStop();
-        void changeText(String s);
+
+        void showGirl(String url);
+        void getGrilFromGank();
     }
 }

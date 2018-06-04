@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.blue.bestdxw.R;
 import com.blue.bestdxw.contract.WelcomeContract;
 import com.blue.bestdxw.presenter.WelcomePresenter;
+import com.blue.bestdxw.utils.ImageUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +40,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
         ButterKnife.bind(this);
         activity = WelcomeActivity.this;
         welcomePresenter = new WelcomePresenter(this);
+        welcomePresenter.getGrilFromGank();
         welcomePresenter.startTime();
     }
 
@@ -53,9 +55,14 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
     }
 
     @Override
-    public void onSuccess() {
+    public void jump() {
         finish();
         intent = new Intent(activity, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showGirl(String url) {
+        ImageUtil.loadImageViewFromeNet(activity,url,R.mipmap.bg,welcomeImg);
     }
 }

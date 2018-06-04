@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -16,15 +17,14 @@ public class ImageUtil {
      * 加载通用网络图片
      * @param context
      * @param url
-     * @param place
      * @param error
      * @param view
      */
-    public static void loadImageViewFromeNet(Context context, String url, int place, int error, ImageView view){
+    public static void loadImageViewFromeNet(Context context, String url, int error, ImageView view){
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(place)
-                .error(error);
+                .error(error)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
         Glide.with(context).load(url).apply(options).into(view);
     }
     /**

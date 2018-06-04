@@ -1,7 +1,8 @@
-package com.blue.bestdxw.view;
+package com.blue.bestdxw.view.fragment;
 
 import android.view.View;
 
+import com.blue.bestdxw.R;
 import com.blue.bestdxw.base.BaseFragment;
 
 /**
@@ -9,10 +10,10 @@ import com.blue.bestdxw.base.BaseFragment;
  *@author BLUE
  *@time 2018/6/4 18:57
  */
-public class HomeFragment extends BaseFragment{
+public class ZoneFragment extends BaseFragment{
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_zone;
     }
 
     @Override

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bestdxw</string>
+    <!--底部按钮说明-->
+    <string name="girl">美女</string>
+    <string name="zone">空间</string>
+    <string name="mine">个人</string>
 </resources>
