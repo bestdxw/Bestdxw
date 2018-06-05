@@ -55,6 +55,13 @@ public class WelcomeModel implements WelcomeContract.Model {
     }
 
     @Override
+    public void cancelCount(WelcomePresenter welcomePresenter) {
+        if (null != countDownTimer) {
+            countDownTimer.cancel();
+        }
+    }
+
+    @Override
     public void loadGirlFromUrl(final WelcomePresenter welcomePresenter) {
         //创建retrofit实例
         retrofit = new Retrofit

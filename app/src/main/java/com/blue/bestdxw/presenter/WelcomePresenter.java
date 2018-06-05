@@ -33,6 +33,11 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
         welcomeModel.endCount(this);
     }
 
+    @Override
+    public void onCancel() {
+        welcomeModel.cancelCount(this);
+    }
+
     public void startTime(){
        welcomeModel.startCount(this);
     }

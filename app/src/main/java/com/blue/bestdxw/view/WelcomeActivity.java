@@ -3,14 +3,15 @@ package com.blue.bestdxw.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blue.bestdxw.R;
+import com.blue.bestdxw.base.BaseActivity;
 import com.blue.bestdxw.contract.WelcomeContract;
 import com.blue.bestdxw.presenter.WelcomePresenter;
 import com.blue.bestdxw.utils.ImageUtil;
+import com.blue.customutil.util.ActivityUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +23,7 @@ import butterknife.OnClick;
  * @author Blue
  * @date 2018/6/2 12:01
  */
-public class WelcomeActivity extends AppCompatActivity implements WelcomeContract.View {
+public class WelcomeActivity extends BaseActivity implements WelcomeContract.View {
 
     @BindView(R.id.welcome_time)
     TextView welcomeTime;
@@ -59,10 +60,17 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
         finish();
         intent = new Intent(activity, MainActivity.class);
         startActivity(intent);
+        ActivityUtil.in(activity);
     }
 
     @Override
     public void showGirl(String url) {
         ImageUtil.loadImageViewFromeNet(activity,url,R.mipmap.bg,welcomeImg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        welcomePresenter.onCancel();
     }
 }

@@ -11,8 +11,18 @@ public class CustomeCodeUtil {
      * data/分类/个数
      */
     public static final String API_BASE_URL = "http://gank.io/api/random/data/";
+    public static final String API_BASE_URL2 = "http://gank.io/api/data/";
     /**
      * 请求超时时长
      */
     public static final int DEFAULT_TIMEOUT = 10;
+
+    /**
+     * Toast显示时长
+     */
+    public static final int TOAST_TIME = 2000;
+
+
+    public static final int NUMBER = 20;
+
 }

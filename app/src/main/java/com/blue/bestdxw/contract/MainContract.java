@@ -5,16 +5,11 @@ package com.blue.bestdxw.contract;
  */
 public interface MainContract {
     interface Model {
-        void judgeBack();
-        void createFragmentView();
     }
 
     interface View {
-        void addFragmentView();
-        void quitSys();
     }
 
     interface Presenter {
-        void FragmentViewSuccess();
     }
 }

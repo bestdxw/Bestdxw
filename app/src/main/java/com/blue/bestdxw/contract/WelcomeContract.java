@@ -12,8 +12,9 @@ public interface WelcomeContract {
     interface Model {
         void startCount(WelcomePresenter welcomePresenter);
         void endCount(WelcomePresenter welcomePresenter);
-        void loadGirlFromUrl(WelcomePresenter welcomePresenter);
+        void cancelCount(WelcomePresenter welcomePresenter);
 
+        void loadGirlFromUrl(WelcomePresenter welcomePresenter);
     }
 
     interface View {
@@ -27,6 +28,7 @@ public interface WelcomeContract {
         void changeText(String s);
         void onSuccess();
         void onStop();
+        void onCancel();
 
         void showGirl(String url);
         void getGrilFromGank();

@@ -7,10 +7,11 @@
     android:orientation="vertical"
     tools:context=".view.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_content"
-        android:layout_width="match_parent"
+    <com.blue.bestdxw.customview.MainViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         android:layout_weight="1"/>
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
