@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.blue.bestdxw">
+
     <!-- 支持多种分辨率，可以得到正确的物理尺寸 -->
     <supports-screens
         android:anyDensity="true"
@@ -54,6 +55,7 @@
     <!-- 配置权限，用来记录应用配置信息 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:name=".CustomeApplication"
         android:allowBackup="true"
@@ -63,7 +65,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:node="replace">
-
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
@@ -75,7 +76,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity"/>
+        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.ShowGirlActivity"
+            android:theme="@style/translucent"/>
     </application>
 
 </manifest>

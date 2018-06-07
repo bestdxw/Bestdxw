@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author: Administrator
@@ -22,6 +23,9 @@ public class HomeFragmentAdapter extends BaseQuickAdapter<GirlList.ResultsBean, 
 
     @Override
     protected void convert(BaseViewHolder helper, GirlList.ResultsBean item) {
-        ImageUtil.loadImageViewFromeNet(mContext,item.getUrl(),R.mipmap.bg,(ImageView)helper.getView(R.id.item_img));
+        //重新设置高度
+        helper.getView(R.id.item_img).getLayoutParams().height = (new Random().nextInt(150)+400);
+        ImageUtil.loadRadiusViewFromeNet(mContext,item.getUrl(),R.mipmap.bg,(ImageView)helper.getView(R.id.item_img),20);
+        helper.addOnClickListener(R.id.item_img);
     }
 }
