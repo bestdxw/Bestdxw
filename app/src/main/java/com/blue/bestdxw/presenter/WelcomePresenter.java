@@ -49,7 +49,7 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
 
     @Override
     public void getGrilFromGank() {
-        welcomeModel.loadGirlFromUrl(this);
+//        welcomeModel.loadGirlFromUrl(this);
     }
 
 }

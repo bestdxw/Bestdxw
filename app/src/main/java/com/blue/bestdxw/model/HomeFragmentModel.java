@@ -3,7 +3,7 @@ package com.blue.bestdxw.model;
 import com.blue.bestdxw.contract.HomeFragmentContract;
 import com.blue.bestdxw.domain.GirlList;
 import com.blue.bestdxw.presenter.HomeFragmentPresenter;
-import com.blue.bestdxw.utils.CustomeCodeUtil;
+import com.blue.bestdxw.utils.SysCodeUtil;
 import com.blue.bestdxw.utils.RetrofitUtil;
 
 import java.util.List;
@@ -26,11 +26,11 @@ public class HomeFragmentModel implements HomeFragmentContract.Model {
         //创建retrofit实例
         retrofit = new Retrofit
                 .Builder()
-                .baseUrl(CustomeCodeUtil.API_BASE_URL2)
+                .baseUrl(SysCodeUtil.API_BASE_URL2)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitUtil retrofitUtil = retrofit.create(RetrofitUtil.class);
-        Call<GirlList> call = retrofitUtil.getGirlList(String.valueOf(CustomeCodeUtil.NUMBER),pager);
+        Call<GirlList> call = retrofitUtil.getGirlList(String.valueOf(SysCodeUtil.NUMBER),pager);
         call.enqueue(new Callback<GirlList>() {
 
             @Override

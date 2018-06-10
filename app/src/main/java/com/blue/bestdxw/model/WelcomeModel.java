@@ -5,7 +5,7 @@ import android.os.CountDownTimer;
 import com.blue.bestdxw.contract.WelcomeContract;
 import com.blue.bestdxw.domain.WelcomeGirl;
 import com.blue.bestdxw.presenter.WelcomePresenter;
-import com.blue.bestdxw.utils.CustomeCodeUtil;
+import com.blue.bestdxw.utils.SysCodeUtil;
 import com.blue.bestdxw.utils.RetrofitUtil;
 import com.blue.customutil.util.LogUtil;
 
@@ -30,7 +30,7 @@ public class WelcomeModel implements WelcomeContract.Model {
     @Override
     public void startCount(final WelcomePresenter welcomePresenter) {
         if (null == countDownTimer) {
-            countDownTimer = new CountDownTimer(3200, 1000) {
+            countDownTimer = new CountDownTimer(2200, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     LogUtil.d("dxw", "" + millisUntilFinished / 1000);
@@ -66,7 +66,7 @@ public class WelcomeModel implements WelcomeContract.Model {
         //创建retrofit实例
         retrofit = new Retrofit
                 .Builder()
-                .baseUrl(CustomeCodeUtil.API_BASE_URL)
+                .baseUrl(SysCodeUtil.API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitUtil retrofitUtil = retrofit.create(RetrofitUtil.class);

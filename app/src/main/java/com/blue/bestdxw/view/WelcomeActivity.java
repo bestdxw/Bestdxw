@@ -3,6 +3,7 @@ package com.blue.bestdxw.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +12,6 @@ import com.blue.bestdxw.base.BaseActivity;
 import com.blue.bestdxw.contract.WelcomeContract;
 import com.blue.bestdxw.presenter.WelcomePresenter;
 import com.blue.bestdxw.utils.ImageUtil;
-import com.blue.customutil.util.ActivityUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +37,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);
         ButterKnife.bind(this);
         activity = WelcomeActivity.this;
@@ -60,7 +61,6 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
         finish();
         intent = new Intent(activity, MainActivity.class);
         startActivity(intent);
-        ActivityUtil.in(activity);
     }
 
     @Override

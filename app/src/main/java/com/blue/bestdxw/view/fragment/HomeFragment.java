@@ -13,10 +13,8 @@ import com.blue.bestdxw.base.BaseFragment;
 import com.blue.bestdxw.contract.HomeFragmentContract;
 import com.blue.bestdxw.domain.GirlList;
 import com.blue.bestdxw.presenter.HomeFragmentPresenter;
-import com.blue.bestdxw.utils.CustomeCodeUtil;
+import com.blue.bestdxw.utils.SysCodeUtil;
 import com.blue.bestdxw.view.ShowGirlActivity;
-import com.bm.library.Info;
-import com.bm.library.PhotoView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -32,8 +30,6 @@ import java.util.List;
  * @time 2018/6/4 18:57
  */
 public class HomeFragment extends BaseFragment implements HomeFragmentContract.View {
-    private PhotoView photoView;
-    private Info mInfo;
     private RecyclerView rvList;
     private SmartRefreshLayout refreshLayout;
     /**
@@ -58,14 +54,10 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     protected void initView(View view) {
         refreshLayout = view.findViewById(R.id.refreshLayout);
         rvList = view.findViewById(R.id.rv_list);
-        photoView = view.findViewById(R.id.photoView);
     }
 
     @Override
     protected void initData() {
-        photoView.enable();
-
-
         homeFragmentPresenter = new HomeFragmentPresenter(this);
         refreshLayout.autoRefresh();
         rvList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -90,26 +82,11 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                intent = new Intent(getActivity(), ShowGirlActivity.class);
-                intent.putExtra("img",girlList.get(position).getUrl());
-                startActivity(intent);
-
-//                mInfo = PhotoView.getImageViewInfo((ImageView) view);
-//                photoView.setVisibility(View.VISIBLE);
-//                photoView.animaFrom(mInfo);
+               intent = new Intent(getActivity(), ShowGirlActivity.class);
+               intent.putExtra("img",girlList.get(position).getUrl());
+               startActivity(intent);
             }
         });
-//        photoView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                photoView.animaTo(mInfo, new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        photoView.setVisibility(View.GONE);
-//                    }
-//                });
-//            }
-//        });
     }
 
     @Override
@@ -124,8 +101,8 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
 
     @Override
     public void setGirlList(List<GirlList.ResultsBean> mList) {
-        if (null != girlList) {
-            if (girlList.size() == CustomeCodeUtil.NUMBER) {
+        if (null != mList) {
+            if (mList.size() == SysCodeUtil.NUMBER) {
                 if (currentPageNo == 1) {
                     girlList = new ArrayList<>();
                     girlList = mList;
@@ -139,18 +116,16 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
                     girlList = new ArrayList<>();
                     girlList = mList;
                     adapter.setNewData(mList);
-                    refreshLayout.finishLoadMoreWithNoMoreData();
                 } else {
                     girlList.addAll(mList);
                     adapter.addData(mList);
-                    refreshLayout.finishLoadMoreWithNoMoreData();
                 }
+                    refreshLayout.finishLoadMoreWithNoMoreData();
             }
         } else {
             refreshLayout.finishLoadMoreWithNoMoreData();
         }
     }
-
 
     @Override
     public void onSuccess() {
@@ -163,5 +138,4 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         refreshLayout.finishRefresh(100);
         refreshLayout.finishLoadMore(100);
     }
-
 }

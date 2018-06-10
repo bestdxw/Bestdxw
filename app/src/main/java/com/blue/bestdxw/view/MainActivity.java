@@ -13,7 +13,7 @@ import com.blue.bestdxw.base.BaseActivity;
 import com.blue.bestdxw.base.MainFactory;
 import com.blue.bestdxw.contract.MainContract;
 import com.blue.bestdxw.customview.MainViewPager;
-import com.blue.bestdxw.utils.CustomeCodeUtil;
+import com.blue.bestdxw.utils.SysCodeUtil;
 import com.blue.customutil.util.ToastUtil;
 
 import butterknife.BindView;
@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             //与上次点击返回键时刻作差
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 //大于2000ms则认为是误操作，使用Toast进行提示
-                ToastUtil.showToastNotRepeat(activity,"再按一次退出程序", CustomeCodeUtil.TOAST_TIME);
+                ToastUtil.showToastNotRepeat(activity,"再按一次退出程序", SysCodeUtil.TOAST_TIME);
                 //并记录下本次点击“返回键”的时刻，以便下次进行判断
                 mExitTime = System.currentTimeMillis();
             } else {

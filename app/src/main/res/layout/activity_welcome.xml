@@ -9,7 +9,8 @@
     <ImageView
         android:id="@+id/welcome_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg"/>
     <TextView
         android:id="@+id/welcome_time"
         android:layout_gravity="end"
