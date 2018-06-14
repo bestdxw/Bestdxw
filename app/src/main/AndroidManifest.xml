@@ -79,7 +79,8 @@
         </activity>
         <activity android:name=".view.MainActivity" />
         <activity android:name=".view.ShowGirlActivity"
-            android:theme="@style/translucent"/>
+            android:theme="@style/translucent"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

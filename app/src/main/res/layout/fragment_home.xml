@@ -34,11 +34,12 @@
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
+        app:layout_behavior="com.blue.bestdxw.customview.ScrollAwareFABBehavior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_15"
         app:elevation="4dp"
         app:layout_anchor="@+id/rv_list"
-        app:layout_anchorGravity="right|bottom"
-        app:layout_behavior="com.blue.bestdxw.customview.ScrollAwareFABBehavior"/>
+        app:srcCompat="@drawable/ic_top"
+        app:layout_anchorGravity="right|bottom" />
 </android.support.design.widget.CoordinatorLayout>

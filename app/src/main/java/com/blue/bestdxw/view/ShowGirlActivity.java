@@ -2,6 +2,7 @@ package com.blue.bestdxw.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,9 +12,13 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.blue.bestdxw.R;
 import com.blue.bestdxw.base.BaseActivity;
+import com.blue.bestdxw.dao.Girls;
+import com.blue.bestdxw.utils.BitmapUtil;
 import com.blue.bestdxw.utils.ImageUtil;
 import com.blue.bestdxw.utils.ShareUtil;
 import com.bm.library.PhotoView;
+
+import org.litepal.LitePal;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,13 +77,18 @@ public class ShowGirlActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_share:
-                ShareUtil.showShare(activity,"好图");
+                ShareUtil.showShare(activity, "好图");
                 break;
             case R.id.btn_love:
+                Girls girls = new Girls();
                 if (isLove) {
+                    LitePal.deleteAll(Girls.class,"imageUrl = ?",url);
                     isLove = false;
                     btnLove.cancelAnimation();
                 } else {
+                    girls.setImageUrl(url);
+                    girls.setImage(BitmapUtil.bitmap2Bytes(((BitmapDrawable)showGirl.getDrawable()).getBitmap()));
+                    girls.save();
                     isLove = true;
                     btnLove.playAnimation();
                 }

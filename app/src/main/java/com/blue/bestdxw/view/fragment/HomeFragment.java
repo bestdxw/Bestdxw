@@ -2,6 +2,7 @@ package com.blue.bestdxw.view.fragment;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -11,14 +12,18 @@ import com.blue.bestdxw.R;
 import com.blue.bestdxw.adapter.HomeFragmentAdapter;
 import com.blue.bestdxw.base.BaseFragment;
 import com.blue.bestdxw.contract.HomeFragmentContract;
+import com.blue.bestdxw.dao.Girls;
 import com.blue.bestdxw.domain.GirlList;
 import com.blue.bestdxw.presenter.HomeFragmentPresenter;
 import com.blue.bestdxw.utils.SysCodeUtil;
 import com.blue.bestdxw.view.ShowGirlActivity;
+import com.blue.customutil.util.ToastUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +34,7 @@ import java.util.List;
  * @author BLUE
  * @time 2018/6/4 18:57
  */
-public class HomeFragment extends BaseFragment implements HomeFragmentContract.View {
+public class HomeFragment extends BaseFragment implements HomeFragmentContract.View, View.OnClickListener {
     private RecyclerView rvList;
     private SmartRefreshLayout refreshLayout;
     /**
@@ -45,6 +50,8 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
 
     private Intent intent;
 
+    private FloatingActionButton fab;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
@@ -54,6 +61,8 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     protected void initView(View view) {
         refreshLayout = view.findViewById(R.id.refreshLayout);
         rvList = view.findViewById(R.id.rv_list);
+        fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(this);
     }
 
     @Override
@@ -82,9 +91,9 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-               intent = new Intent(getActivity(), ShowGirlActivity.class);
-               intent.putExtra("img",girlList.get(position).getUrl());
-               startActivity(intent);
+                intent = new Intent(getActivity(), ShowGirlActivity.class);
+                intent.putExtra("img", girlList.get(position).getUrl());
+                startActivity(intent);
             }
         });
     }
@@ -120,7 +129,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
                     girlList.addAll(mList);
                     adapter.addData(mList);
                 }
-                    refreshLayout.finishLoadMoreWithNoMoreData();
+                refreshLayout.finishLoadMoreWithNoMoreData();
             }
         } else {
             refreshLayout.finishLoadMoreWithNoMoreData();
@@ -137,5 +146,20 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     public void onFail() {
         refreshLayout.finishRefresh(100);
         refreshLayout.finishLoadMore(100);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                //滑动到指定位置
+                rvList.smoothScrollToPosition(0);
+                ToastUtil.showToastNotRepeat(getActivity()
+                        , "长度："+LitePal.findAll(Girls.class).size()+"第一条数据："+LitePal.findAll(Girls.class).get(0).getImageUrl()
+                        ,SysCodeUtil.TOAST_TIME);
+                break;
+            default:
+                break;
+        }
     }
 }

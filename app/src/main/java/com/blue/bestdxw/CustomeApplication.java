@@ -1,6 +1,5 @@
 package com.blue.bestdxw;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -14,12 +13,15 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 
+import org.litepal.LitePal;
+import org.litepal.LitePalApplication;
+
 /**
  *
  * @author Blue
  * @date 2018/6/2 0002 12:02
  */
-public class CustomeApplication extends Application {
+public class CustomeApplication extends LitePalApplication {
     static {
         //刷新
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
@@ -43,5 +45,6 @@ public class CustomeApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MobSDK.init(this);
+        LitePal.initialize(this);
     }
 }
